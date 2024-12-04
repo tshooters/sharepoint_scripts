@@ -3,7 +3,7 @@ $clientId = "CLIENT_ID"         # ClientID from EntraID App Registration
 $clientSecret = "SECRET"        # Secret from EntraID App Registration
 $tenantId = "TENANT_ID"         # TenantID from EntraID App Registration 
 $siteId = "TENANT_NAME.sharepoint.com,GUID,GUID"        # SiteID from Sharepoint
-#$siteName = "BackupsHTD"
+#$siteName = "SearchForSiteName"        #You can search the SiteID using the Site Name, but it requires more permissions in the GraphAPI
 $localFolderPath = "D:\SourcePath"
 $sharePointFolderPath = "Shared Documents"
 
@@ -12,7 +12,7 @@ $secureClientSecret = ConvertTo-SecureString -String $clientSecret -AsPlainText 
 $clientSecretCredential = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $clientId, $secureClientSecret
 Connect-MgGraph -TenantId $tenantId -ClientSecretCredential $clientSecretCredential
 
-#$site = Get-MgSite -Search $siteName -Debug
+#$site = Get-MgSite -Search $siteName -Debug        #You can search the SiteID using the Site Name, but it requires more permissions in the GraphAPI
 $site = get-mgsite -SiteId $siteId
 # Get the drive
 $drive = Get-MgSiteDrive -SiteId $site.Id
